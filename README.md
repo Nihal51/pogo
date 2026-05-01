@@ -1,0 +1,25 @@
+# Drive Buddy Motion Web
+
+Website-first React implementation focused on high-performance motion patterns for ride UX.
+
+## Included screens
+- Splash Screen: DB logo draw + B slide + glow handoff.
+- Home Screen: CTA actions and mascot micro-animations.
+- Booking Screen: route draw, driver entry, staggered ride metadata.
+- Tracking Screen: animated car interpolation path + pulsing route.
+
+## Folder structure
+- `src/components` reusable motion components (`PressableButton`, `Mascot`, `AnimatedRouteMap`, `StaggerList`, `PageTransition`)
+- `src/screens` feature screens (`Splash`, `Home`, `Booking`, `Tracking`)
+- `src/styles.css` motion tokens and keyframes
+
+## Run
+```bash
+npm install
+npm run dev
+```
+
+
+## GitHub automation
+- GitHub Actions CI workflow added to install dependencies and run production build on push/PR.
+- Dependabot configured for npm and GitHub Actions weekly updates.
