@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import PressableButton from '../components/PressableButton';
 import AnimatedRouteMap from '../components/AnimatedRouteMap';
 import StaggerList from '../components/StaggerList';
+import { useRideStore } from '../store/rideStore';
 
 export default function TrackingScreen() {
   const navigate = useNavigate();
+  const { ride } = useRideStore();
 
   return (
     <main className='screen'>
@@ -13,9 +15,9 @@ export default function TrackingScreen() {
 
       <StaggerList
         items={[
-          'Driver: Aman Verma',
-          'Distance Remaining: 3.8 km',
-          'Estimated Arrival: 8 min',
+          `Driver: ${ride.driver}`,
+          `Distance Remaining: ${ride.remainingKm} km`,
+          `Estimated Arrival: ${Math.round(ride.etaMinutes * 0.7)} min`,
         ]}
       />
 

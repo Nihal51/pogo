@@ -1,17 +1,15 @@
-import React from 'react';
+import useInterpolatedProgress from '../hooks/useInterpolatedProgress';
 
-/**
- * Lightweight SVG map used by Booking/Tracking screens.
- * Pure CSS/SVG animation keeps it smooth without heavy JS loops.
- */
 export default function AnimatedRouteMap({ live = false }) {
+  const progress = useInterpolatedProgress();
+
   return (
-    <div className='route-map'>
+    <section className='route-map map-fade'>
       <svg viewBox='0 0 360 220' className='route-svg' aria-hidden='true'>
         <defs>
           <linearGradient id='roadGlow' x1='0%' y1='0%' x2='100%' y2='0%'>
             <stop offset='0%' stopColor='#5f4a00' />
-            <stop offset='50%' stopColor='#FFC107' />
+            <stop offset='50%' stopColor='#F4B400' />
             <stop offset='100%' stopColor='#5f4a00' />
           </linearGradient>
         </defs>
@@ -20,7 +18,7 @@ export default function AnimatedRouteMap({ live = false }) {
         <circle cx='20' cy='160' r='6' className='pin pickup' />
         <circle cx='340' cy='60' r='6' className='pin drop' />
       </svg>
-      <div className={`car ${live ? 'car-live' : 'car-arrive'}`}>🚕</div>
-    </div>
+      <div className={`car ${live ? 'car-live' : 'car-arrive'}`} style={live ? { '--progress': progress } : undefined}>🚕</div>
+    </section>
   );
 }
