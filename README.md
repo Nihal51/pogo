@@ -24,7 +24,6 @@ npm run dev
 - GitHub Actions CI workflow added to install dependencies and run production build on push/PR.
 - Dependabot configured for npm and GitHub Actions weekly updates.
 
-
 ## GitHub Pages fix
 - Uses `HashRouter` to avoid route 404 on refresh/deep links.
 - Uses Vite `base: "./"` so built assets load correctly under repository subpaths.

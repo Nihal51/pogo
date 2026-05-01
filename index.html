@@ -3,68 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drive Buddy</title>
-  <style>
-    :root{--bg:#0b0b0b;--card:#171717;--line:#2a2a2a;--y:#ffc107;--t:#fff;--m:#b8b8b8;--ease:cubic-bezier(.42,0,.58,1)}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% -20%,#232323,var(--bg) 40%);font-family:Inter,Arial;color:var(--t)}
-    .app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .screen{width:min(420px,95vw);display:none;flex-direction:column;gap:14px;align-items:center;text-align:center;animation:in .28s var(--ease)}
-    .screen.active{display:flex}
-    @keyframes in{from{opacity:0;transform:translateX(14px) scale(.97)}to{opacity:1;transform:none}}
-    .muted{color:var(--m)} .eyebrow{color:var(--y);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-    button{border:0;background:var(--y);color:#111;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;transition:transform .2s var(--ease)}
-    button:active{transform:scale(.95)}
-    .logo{width:220px;height:120px;filter:drop-shadow(0 0 14px rgba(255,193,7,.3))}
-    .road{stroke:var(--y);stroke-width:6;fill:none;stroke-dasharray:280;stroke-dashoffset:280;animation:draw .9s ease-in-out forwards}
-    .b{fill:var(--y);font-size:84px;font-weight:700;transform:translateX(24px);opacity:0;animation:bin .42s .85s ease-in-out forwards}
-    @keyframes draw{to{stroke-dashoffset:0}} @keyframes bin{to{transform:none;opacity:1}}
-    .map{position:relative;width:100%;height:230px;border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden}
-    .map svg{width:100%;height:100%}.bg{stroke:#303030;stroke-width:8;fill:none}.act{stroke:var(--y);stroke-width:5;fill:none;stroke-dasharray:420;stroke-dashoffset:420;animation:route .5s ease-in-out forwards}
-    @keyframes route{to{stroke-dashoffset:0}}
-    .car{position:absolute;left:14px;top:146px;font-size:24px}
-    .car.live{animation:car 4s linear infinite}
-    @keyframes car{0%{left:14px;top:146px}35%{left:120px;top:118px}68%{left:232px;top:130px}100%{left:320px;top:46px}}
-    .list{width:100%;display:grid;gap:8px}.list div{background:var(--card);border:1px solid var(--line);padding:10px;border-radius:10px;text-align:left}
-    .mascot{width:76px;height:76px;background:var(--y);border-radius:18px;position:relative;animation:breathe 2.2s ease-in-out infinite}
-    .eye{position:absolute;top:24px;width:8px;height:8px;background:#000;border-radius:50%;animation:blink 2.6s ease-in-out infinite}.l{left:20px}.r{right:20px}
-    .smile{position:absolute;left:25px;top:42px;width:24px;height:10px;border-bottom:3px solid #000;border-radius:0 0 20px 20px}
-    @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}@keyframes blink{0%,46%,52%,100%{transform:scaleY(1)}49%{transform:scaleY(.1)}}
-  </style>
+  <title>Drive Buddy Motion Web</title>
 </head>
 <body>
-<div class="app">
-  <section id="splash" class="screen active">
-    <svg class="logo" viewBox="0 0 240 120"><path class="road" d="M30 20 L30 100 L90 100 L90 20 Z"/><text x="110" y="92" class="b">B</text></svg>
-    <p class="muted">Drive Buddy</p>
-  </section>
-
-  <section id="home" class="screen">
-    <p class="eyebrow">Drive Buddy • Premium Ride Motion</p><h1>Drive Buddy</h1>
-    <p class="muted">Smooth, safe and realtime ride experience.</p>
-    <div class="mascot"><div class="eye l"></div><div class="eye r"></div><div class="smile"></div></div>
-    <div class="btns"><button data-go="booking">Book Ride</button><button data-go="tracking">Live Tracking</button></div>
-  </section>
-
-  <section id="booking" class="screen">
-    <h2>Ride Booking</h2>
-    <div class="map"><svg viewBox="0 0 360 220"><path class="bg" d="M20 160 C 90 120, 150 170, 210 120 S 330 80, 340 60"/><path class="act" d="M20 160 C 90 120, 150 170, 210 120 S 330 80, 340 60"/></svg><div class="car">🚕</div></div>
-    <div class="list"><div>Pickup: City Center</div><div>Drop: Airport Terminal 1</div><div>ETA: 12 minutes</div></div>
-    <button data-go="tracking">Confirm & Track</button>
-  </section>
-
-  <section id="tracking" class="screen">
-    <h2>Live Tracking</h2>
-    <div class="map"><svg viewBox="0 0 360 220"><path class="bg" d="M20 160 C 90 120, 150 170, 210 120 S 330 80, 340 60"/><path class="act" d="M20 160 C 90 120, 150 170, 210 120 S 330 80, 340 60"/></svg><div class="car live">🚕</div></div>
-    <div class="list"><div>Driver: Aman Verma</div><div>Distance Remaining: 3.8 km</div><div>Estimated Arrival: 8 min</div></div>
-    <button data-go="home">Back Home</button>
-  </section>
-</div>
-<script>
-  const screens=[...document.querySelectorAll('.screen')];
-  const show=id=>screens.forEach(s=>s.classList.toggle('active',s.id===id));
-  setTimeout(()=>show('home'),2200);
-  document.addEventListener('click',e=>{const b=e.target.closest('button[data-go]');if(b)show(b.dataset.go);});
-</script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
