@@ -33,7 +33,9 @@ body.splash-active > *:not(.splash-screen){visibility:hidden}
 .splash-road{position:absolute;left:1.1rem;right:1.1rem;bottom:.7rem;height:1px;background:linear-gradient(90deg,transparent,var(--gold-rim),transparent)}
 @keyframes driveIn{0%{transform:translateX(-95px) rotate(-6deg);opacity:0}45%{opacity:1}75%{transform:translateX(8px) rotate(0)}100%{transform:translateX(0);opacity:1}}
 @keyframes brandIn{to{opacity:1;transform:translateY(0)}}
-@media (prefers-reduced-motion:reduce){.splash-car,.splash-brand{animation:none;opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.splash-car,.splash-brand,.db-road-path,.db-road-dash,.db-b,.splash-glint,.mascot-card,.mascot-figure{animation:none;opacity:1;transform:none}}
+.db-intro{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:1rem;max-width:640px}.db-logo-wrap{position:relative}.db-logo{width:min(56vw,255px);height:auto;filter:drop-shadow(0 8px 22px rgba(0,0,0,.5))}.db-d{fill:#0A0A0A}.db-b{fill:#F4B400;transform:translateX(34px);opacity:0;animation:bSlide .65s .8s var(--ease) forwards}.db-road-path{fill:none;stroke:#fff;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:410;stroke-dashoffset:410;animation:roadDraw .85s .05s var(--ease) forwards}.db-road-dash{fill:none;stroke:#0A0A0A;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:18 14;stroke-dashoffset:0;animation:dashMove .95s linear infinite}.splash-glint{position:absolute;inset:8% auto auto -28%;width:50%;height:84%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.65),transparent);filter:blur(1px);animation:glintSweep 1.15s 1s var(--ease) forwards;opacity:0}.db-tagline{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--cream-50);margin-top:.3rem}.db-points{display:flex;gap:.35rem;margin-top:.58rem}.db-point{width:6px;height:6px;border-radius:50%;background:var(--cream-25);animation:pointPulse 1.2s infinite}.db-point:nth-child(2){animation-delay:.15s}.db-point:nth-child(3){animation-delay:.3s}@keyframes roadDraw{to{stroke-dashoffset:0}}@keyframes dashMove{to{stroke-dashoffset:-48}}@keyframes bSlide{to{transform:translateX(0);opacity:1}}@keyframes glintSweep{0%{left:-28%;opacity:0}15%{opacity:.9}100%{left:95%;opacity:0}}@keyframes pointPulse{0%,100%{transform:scale(.8);opacity:.4}50%{transform:scale(1.2);opacity:1}}
+.mascot-card{margin-top:1.1rem;border:1px solid var(--gold-rim);background:linear-gradient(140deg,rgba(201,153,58,.16),rgba(8,7,10,.82));border-radius:20px;padding:1rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;box-shadow:0 22px 44px rgba(0,0,0,.42);animation:mascotPop .7s .55s var(--ease) both}.mascot-figure{width:76px;height:76px;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 34% 24%,#ffd98f,#c78f2a 60%,#6b4b12);display:grid;place-items:center;box-shadow:0 12px 26px rgba(0,0,0,.38);animation:mascotBob 2.3s ease-in-out infinite}.mascot-figure svg{width:58px;height:58px}.mascot-copy h3{font-family:var(--serif);font-size:1.15rem;line-height:1;color:var(--cream)}.mascot-copy p{font-size:.74rem;color:var(--cream-50);line-height:1.45}.mascot-copy strong{color:var(--gold)}.mascot-badges{display:flex;flex-direction:column;gap:.3rem}.mascot-badge{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-pale);padding:.22rem .45rem;border-radius:999px;border:1px solid var(--gold-rim);background:rgba(201,153,58,.12)}@keyframes mascotPop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
 a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:var(--gold)}
@@ -445,9 +447,21 @@ footer{background:var(--ink2);border-top:1px solid var(--rim);padding:5rem 5% 2.
 
 
 <div class="splash-screen" id="splashScreen" aria-hidden="true">
-  <div class="splash-inner" role="img" aria-label="DriveBuddy loading intro">
-    <div class="splash-car" aria-hidden="true">🚗</div>
-    <div class="splash-brand">Drive<span>Buddy</span></div>
+  <div class="splash-inner db-intro" role="img" aria-label="DriveBuddy DB road logo intro">
+    <div class="db-logo-wrap">
+      <svg class="db-logo" viewBox="0 0 320 170" aria-hidden="true">
+        <path class="db-d" d="M20 24h124c36 0 66 29 66 65s-30 65-66 65H20z"/>
+        <path class="db-b" d="M187 24h89c26 0 44 15 44 34 0 16-12 29-31 32 20 3 33 16 33 36 0 23-19 39-47 39h-88v-30h76c12 0 21-7 21-18 0-10-8-17-21-17h-69V79h64c11 0 19-7 19-16 0-10-8-16-19-16h-71z"/>
+        <path class="db-road-path" d="M31 148C74 124 103 100 126 73c15-18 24-34 45-44"/>
+        <path class="db-road-dash" d="M38 143c39-20 65-42 89-70"/>
+      </svg>
+      <span class="splash-glint" aria-hidden="true"></span>
+    </div>
+    <div>
+      <div class="splash-brand">Drive<span>Buddy</span></div>
+      <div class="db-tagline">Safe rides. Happy journeys.</div>
+      <div class="db-points" aria-hidden="true"><span class="db-point"></span><span class="db-point"></span><span class="db-point"></span></div>
+    </div>
     <div class="splash-road"></div>
   </div>
 </div>
@@ -552,6 +566,29 @@ footer{background:var(--ink2);border-top:1px solid var(--rim);padding:5rem 5% 2.
       <div class="hero-btns">
         <a href="tel:919111473929" class="btn btn-primary mag-btn">📞 Call to Book</a>
         <a href="https://wa.me/919111473929" class="btn btn-ghost mag-btn">WhatsApp →</a>
+      </div>
+      <div class="mascot-card reveal">
+        <div class="mascot-figure" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <circle cx="32" cy="22" r="14" fill="#ffd49a"/>
+            <path d="M18 22c0-8 6-15 14-15s14 7 14 15v2H18z" fill="#1b1a20"/>
+            <rect x="24" y="13" width="17" height="6" rx="3" fill="#f4b400"/>
+            <rect x="15" y="37" width="34" height="22" rx="10" fill="#111018"/>
+            <rect x="15" y="41" width="34" height="4" fill="#f4b400"/>
+            <circle cx="27" cy="23" r="2" fill="#1a1112"/>
+            <circle cx="37" cy="23" r="2" fill="#1a1112"/>
+            <path d="M27 29c2 2 8 2 10 0" stroke="#1a1112" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="mascot-copy">
+          <h3>Meet your <strong>Drive Buddy</strong></h3>
+          <p>Friendly, verified and always ready to help you ride safe, ride happy.</p>
+        </div>
+        <div class="mascot-badges" aria-label="Drive Buddy trust highlights">
+          <span class="mascot-badge">Safe</span>
+          <span class="mascot-badge">On Time</span>
+          <span class="mascot-badge">24×7</span>
+        </div>
       </div>
     </div>
 
